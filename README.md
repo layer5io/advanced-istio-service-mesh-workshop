@@ -1,35 +1,35 @@
-# layer5-repo-template
-This repository is used as the boilerplate for consistency across all Layer5 repos.
+# Advanced Istio Service Mesh Workshop
+Curriculum for Advanced Istio service mesh workshop. 
 
-<div>&nbsp;</div>
+## Prerequisites
+- [Join the service mesh community on Slack](http://slack.layer5.io)
+- [Prereq - Setup Docker, Kubernetes, and Meshery](prereq/README.md)
 
-## Join the service mesh community!
+## Segment 2
+### Setup Istio
+- [Lab 1 - Setup Istio](lab-1/README.md)
 
-<a name="contributing"></a><a name="community"></a>
-Our projects are community-built and welcome collaboration. 👍 Be sure to see the <a href="https://docs.google.com/document/d/17OPtDE_rdnPQxmk2Kauhm3GwXF1R5dZ3Cj8qZLKdo5E/edit">Layer5 Community Welcome Guide</a> for a tour of resources available to you and jump into our <a href="http://slack.layer5.io">Slack</a>!
+## Segment 3
+### Deploying an app onto the mesh
+- [Lab 2 - Deploy Sample App - BookInfo](lab-2/README.md)
+- [Lab 3 - Istio Ingress Controller/Gateway](lab-3/README.md)
 
-<p style="clear:both;">
-<a href ="https://layer5.io/community/meshmates"><img alt="MeshMates" src=".github/readme/images/Layer5-MeshMentors.png" style="margin-right:10px; margin-bottom:7px;" width="28%" align="left" /></a>
-<h3>Find your MeshMate</h3>
+## Segment 4
+### Observability
+- [Lab 4 - Telemetry](lab-4/README.md)
 
-<p>MeshMates are experienced Layer5 community members, who will help you learn your way around, discover live projects and expand your community network. 
-Become a <b>Meshtee</b> today!</p>
+## Segment 5
+### Traffic Control
+- [Lab 5 - Request Routing and Canary Testing](lab-5/README.md)
+- [Lab 6 - Fault Injection](lab-6/README.md)
+- [Lab 7 - Circuit Breaking](lab-7/README.md)
 
-Find out more on the <a href="https://layer5.io/community">Layer5 community</a>. <br />
-<br /><br /><br /><br />
-</p>
+## Segment 6
+### Security
+- [Lab 8 - Mutual TLS & Identity Verification](lab-8/README.md)
 
-<div>&nbsp;</div>
+# Authors
+* Layer5 Authors [Twitter](https://twitter.com/layer5), [Slack](http://slack.layer5.io)
 
-<a href="https://meshery.io/community"><img alt="Layer5 Service Mesh Community" src=".github/readme/images//slack-128.png" style="margin-left:10px;padding-top:5px;" width="110px" align="right" /></a>
-
-<a href="http://slack.layer5.io"><img alt="Layer5 Service Mesh Community" src=".github/readme/images//community.svg" style="margin-right:8px;padding-top:5px;" width="140px" align="left" /></a>
-
-<p>
-✔️ <em><strong>Join</strong></em> any or all of the weekly meetings on <a href="https://calendar.google.com/calendar/b/1?cid=bGF5ZXI1LmlvX2VoMmFhOWRwZjFnNDBlbHZvYzc2MmpucGhzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">community calendar</a>.<br />
-✔️ <em><strong>Watch</strong></em> community <a href="https://www.youtube.com/playlist?list=PL3A-A6hPO2IMPPqVjuzgqNU5xwnFFn3n0">meeting recordings</a>.<br />
-✔️ <em><strong>Access</strong></em> the <a href="https://drive.google.com/drive/u/4/folders/0ABH8aabN4WAKUk9PVA">community drive</a>.<br />
-</p>
-<p align="center">
-<i>Not sure where to start?</i> Grab an open issue with the <a href="https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+label%3A%22help+wanted%22+">help-wanted label</a>.
-</p>
+# Resources
+All workshop resources (slides, labs, accounts, books, landscape, mailing list, slack) can found at [Layer5.io](https://layer5.io/#workshops).
