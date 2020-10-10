@@ -1,0 +1,36 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: custom-filter
+  namespace: default # as defined in meshConfig resource.
+spec:
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: SIDECAR_OUTBOUND # will match outbound listeners in all sidecars
+      listener:
+        portNumber: 9080
+        filterChain:
+          name: envoy.http_connection_manager
+          filter:
+            name: "envoy.tcp_proxy"
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        # This is the full filter config including the name and config or typed_config section.
+        name: "envoy.filters.http.wasm"
+        config:
+          config:
+            name: custom-filter
+            rootId: my_root_id
+            vmConfig:
+              code:
+                local:
+                  filename: /var/local/lib/wasm-filters/custom-filter.wasm
+              runtime: envoy.wasm.runtime.v8
+              vmId: custom-filter
+              allow_precompiled: true
+  workloadSelector:
+    labels:
+      app: productpage
+      version: v1
