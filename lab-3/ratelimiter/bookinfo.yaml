@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productpage-v1
+  annotations:
+    # sidecar.istio.io/userVolume: '[{"name":"wasm-filter","emptyDir": {}}]'
+    sidecar.istio.io/userVolumeMount: '[{"mountPath":"/var/lib/filters","name":"wasm-filter"}]'
+    sidecar.istio.io/userMount: '[{"mountPath":"/var/lib/filters","name":"wasm-filter"}]'
+  labels:
+    app: productpage
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: productpage
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: productpage
+        version: v1
+    spec:
+      serviceAccountName: bookinfo-productpage
+      initContainers:
+      - name: add-wasm
+        image: centos:7
+        command:
+        - "bin/bash"
+        - "-c"
+        - "echo INIT_DONE > /var/lib/filters/info"
+        volumeMounts:
+        - mountPath: /var/lib/filters
+          name: wasm-filter
+      containers:
+      - name: productpage
+        image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        # - name: wasm-filter
+        #   mountPath: /var/lib/filters
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: wasm-filter
+        emptyDir: {}

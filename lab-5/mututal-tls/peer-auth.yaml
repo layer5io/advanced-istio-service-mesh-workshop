@@ -1,0 +1,14 @@
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: "default"
+  namespace: "istio-system"
+spec:
+  # selector:
+  #   matchLabels:
+  #     app: httpbin
+  mtls:
+    mode: STRICT #ISTIO_MUTUAL,DISABLE
+  # portLevelMtls:
+  #   80:
+  #     mode: DISABLE
