@@ -1,12 +1,11 @@
 # Lab 3 - WebAssembly and intelligent data planes
 
-The components deployed on the service mesh by default are not exposed outside the cluster. External access to individual services so far has been provided by creating an external load balancer on each service.
+The components deployed on the service mesh by default are not exposed outside the cluster. An Ingress Gateway is deployed as a Kubernetes service of type LoadBalancer (or NodePort). To make Bookinfo accessible external to the cluster, you have to create an `Istio Gateway` for the Bookinfo application and also define an `Istio VirtualService` with the routes we need.
 
-An ingress gateway service is deployed as a Kubernetes service of type LoadBalancer. For making Bookinfo accessible from outside, we have to create an `Istio Gateway` for the service and also define an `Istio VirtualService` for Bookinfo with the routes we need.
+## 3.1 Inspecting the Istio Ingress Gateway
 
-## 3.1 Inspecting the Istio Ingress gateway
+The ingress gateway gets exposed as a normal Kubernetes service of type LoadBalancer (or NodePort):
 
-The ingress gateway gets expossed as a normal kubernetes service of type load balancer:
 ```sh
 kubectl get svc istio-ingressgateway -n istio-system -o yaml
 ```
@@ -16,7 +15,9 @@ Because the Istio Ingress Gateway is an Envoy Proxy you can inspect it using the
 ```sh
 kubectl get pods -n istio-system
 ```
+
 Copy and paste your ingress gateway's pod name. Execute:
+
 ```sh
 kubectl -n istio-system exec -it <istio-ingressgateway-...> bash
 ```
