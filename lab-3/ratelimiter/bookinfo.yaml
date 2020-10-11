@@ -21,11 +21,13 @@ spec:
       serviceAccountName: bookinfo-productpage
       initContainers:
       - name: add-wasm
-        image: centos:7
+        image: curlimages/curl
         command:
-        - "bin/bash"
-        - "-c"
-        - "echo INIT_DONE > /var/lib/filters/info"
+        - "curl"
+        - "-L"
+        - "-o"
+        - "/var/lib/filters/ratelimit-filter.wasm"
+        - "https://github.com/layer5io/advanced-istio-service-mesh-workshop/raw/master/lab-3/ratelimiter/ratelimit-filter.wasm"
         volumeMounts:
         - mountPath: /var/lib/filters
           name: wasm-filter
