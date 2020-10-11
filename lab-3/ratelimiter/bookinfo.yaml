@@ -3,10 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productpage-v1
-  annotations:
-    # sidecar.istio.io/userVolume: '[{"name":"wasm-filter","emptyDir": {}}]'
-    sidecar.istio.io/userVolumeMount: '[{"mountPath":"/var/lib/filters","name":"wasm-filter"}]'
-    sidecar.istio.io/userMount: '[{"mountPath":"/var/lib/filters","name":"wasm-filter"}]'
   labels:
     app: productpage
     version: v1
@@ -42,10 +38,22 @@ spec:
         volumeMounts:
         - name: tmp
           mountPath: /tmp
-        # - name: wasm-filter
-        #   mountPath: /var/lib/filters
+        - name: wasm-filter
+          mountPath: /var/lib/filters
       volumes:
       - name: tmp
         emptyDir: {}
       - name: wasm-filter
         emptyDir: {}
+
+# kubectl patch deployment -n default productpage-v1 -p '{
+#   "spec": {
+#     "template": {
+#       "metadata": {
+#         "annotations": {
+#           "sidecar.istio.io/userVolumeMount": "[{\"mountPath\":\"/var/lib/filters\",\"name\":\"wasm-filter\"}]"
+#         }
+#       }
+#     }
+#   }
+# }'
