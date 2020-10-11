@@ -26,7 +26,7 @@ spec:
             vmConfig:
               code:
                 local:
-                  filename: /var/local/lib/wasm-filters/custom-filter.wasm
+                  filename: /var/lib/filters/ratelimit-filter.wasm
               runtime: envoy.wasm.runtime.v8
               vmId: custom-filter
               allow_precompiled: true

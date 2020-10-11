@@ -17,4 +17,4 @@ spec:
         methods: ["GET"]
     when:
     - key: request.headers[end-user]
-      values: ["layer5"]
+      values: ["naruto"]

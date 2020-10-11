@@ -1,17 +1,15 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: httpbin
+  name: reviews
 spec:
   hosts:
-    - httpbin
+  - reviews
   http:
   - route:
     - destination:
-        host: httpbin
+        host: reviews
         subset: v1
-      weight: 100
-    mirror:
-      host: httpbin
-      subset: v2
-    mirror_percent: 100
+    retries:
+      attempts: 5
+      perTryTimeout: 3s
