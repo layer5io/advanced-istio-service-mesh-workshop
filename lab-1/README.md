@@ -34,7 +34,10 @@ In the Istio management page:
 
 ## <a name="2"></a> 2 - Verify install
 
-On the Istio adapter's management page, on the `Validate Service Mesh Configuration` card, you can click on the (+) icon and select `Verify Installation` to verify the Istio installation inside the cluster.
+In the Istio management page:
+
+1. Click the (+) icon on the `Validate Service Mesh Configuration` card.
+1. Select `Verify Installation` to verify the installation of Istio.
 
 #### Alternatively:
 
@@ -54,8 +57,7 @@ Istio, as part of this workshop, is installed with several optional addons like:
 4. [Jaeger](https://www.jaegertracing.io/)
 5. [Kiali](https://www.kiali.io/)
 
-You will use Prometheus and Grafana for collecting and viewing metrics, while for viewing distributed traces, you can choose between [Zipkin](https://zipkin.io/) or [Jaeger](https://www.jaegertracing.io/). In this training, we will use Jaeger.
-Kiali is another add-on which can be used to generate a graph of services within an Istio mesh and is deployed as part of Istio in this lab.
+You will use Prometheus and Grafana for collecting and viewing metrics, while for viewing distributed traces, you can choose between [Zipkin](https://zipkin.io/) or [Jaeger](https://www.jaegertracing.io/). In this training, we will use Jaeger. Kiali is another add-on which can be used to generate a graph of services within an Istio mesh and is deployed as part of Istio in this lab.
 
 <h2>
   <a href="../lab-2/README.md">
@@ -86,24 +88,26 @@ curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.7.3 sh -
 
 ### <a name="1.2"></a> 1.2 - Setting up istioctl
 
-On a \*nix system, you can setup istioctl by doing the following:
+On a \*nix system, you can setup `istioctl` by doing the following:
 
-The above command will get the latest Istio package and untar it in the same folder.
+```sh
+brew install istioctl
+```
 
-Change into the Istio package directory and add the `istioctl` client to your PATH environment variable.
+Alternatively, change into the Istio package directory and add the `istioctl` client to your PATH environment variable.
 
 ```sh
 cd istio-*
 export PATH=$PWD/bin:$PATH
 ```
 
-To verify `istioctl` is setup lets try to print out the command help
+Verify `istioctl` is available:
 
 ```sh
 istioctl version
 ```
 
-We can use a new feature in istioctl to check if the cluster is ready for install:
+Check if the cluster is ready for installation:
 
 ```sh
 istioctl verify-install
@@ -111,8 +115,14 @@ istioctl verify-install
 
 ### Install Istio:
 
-To install istio with a `demo` profile, execute the below command.
+To install Istio with a `demo` profile, execute the below command.
 
 ```sh
 istioctl install --set profile=demo
+```
+
+Alternatively, with Envoy logging enabled:
+
+```sh
+istioctl install --set profile=demo --set meshConfig.accessLogFile=/dev/stdout
 ```
