@@ -30,8 +30,6 @@ In the Istio management page:
    <img src="img/install-istio.png" width="50%" align="center" />
    </a>
 
-![see screenshot](https://raw.githubusercontent.com/leecalcote/istio-service-mesh-workshop/feature/blend-in-meshery/lab-1/img/meshery_management_istio-install.png)
-
 <small>For manual steps go [here](#appendix)</small>
 
 ## <a name="2"></a> 2 - Verify install
@@ -71,10 +69,6 @@ Kiali is another add-on which can be used to generate a graph of services within
 Alternative, manual installation steps are provided for reference below. No need to execute these if you have performed the steps above.
 
 <hr />
-
-## <a name="appendix"></a> Appendix - Alternative Manual Install
-
-### Download `istioctl` CLI
 
 ## <a name="appendix"></a> Appendix - Alternative Manual Install
 
