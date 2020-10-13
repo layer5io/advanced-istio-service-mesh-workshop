@@ -1,9 +1,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: httpbin
+  name: productpage
 spec:
-  host: httpbin
+  host: productpage
   trafficPolicy:
     connectionPool:
       tcp:

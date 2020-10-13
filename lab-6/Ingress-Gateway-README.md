@@ -1,4 +1,4 @@
-# Lab 3 - WebAssembly and intelligent data planes
+# Lab 6 - WebAssembly and intelligent data planes
 
 The components deployed on the service mesh by default are not exposed outside the cluster. An Ingress Gateway is deployed as a Kubernetes service of type LoadBalancer (or NodePort). To make Bookinfo accessible external to the cluster, you have to create an `Istio Gateway` for the Bookinfo application and also define an `Istio VirtualService` with the routes we need.
 

@@ -55,15 +55,13 @@ Using Meshery, install Istio add-ons. In the Istio management page:
 1. Select each of the following add-ons:
    1. [Prometheus](https://prometheus.io/)
    1. [Grafana](https://grafana.com/)
-   1. [Zipkin](https://zipkin.io/)
    1. [Jaeger](https://www.jaegertracing.io/)
-   1. [Kiali](https://www.kiali.io/)
 
 <a href="img/istio-add-ons.png">
 <img src="img/istio-add-ons.png" width="50%" align="center" />
 </a>
 
-You will use Prometheus and Grafana for collecting and viewing metrics, while for viewing distributed traces, you can choose between [Zipkin](https://zipkin.io/) or [Jaeger](https://www.jaegertracing.io/). In this training, we will use Jaeger. Kiali is another add-on which can be used to generate a graph of services within an Istio mesh and is deployed as part of Istio in this lab.
+You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces.
 
 <h2>
   <a href="../lab-2/README.md">
@@ -119,7 +117,7 @@ Check if the cluster is ready for installation:
 istioctl verify-install
 ```
 
-### Install Istio:
+### 1.3 Install Istio:
 
 To install Istio with a `demo` profile, execute the below command.
 
@@ -133,7 +131,7 @@ Alternatively, with Envoy logging enabled:
 istioctl install --set profile=demo --set meshConfig.accessLogFile=/dev/stdout
 ```
 
-### Install Add-ons:
+### 1.4 Install Add-ons:
 
 **Prometheus**
 
@@ -154,10 +152,4 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/sampl
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/jaeger.yaml
 
-```
-
-**Kiali**
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/kiali.yaml
 ```
