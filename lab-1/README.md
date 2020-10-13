@@ -132,3 +132,32 @@ Alternatively, with Envoy logging enabled:
 ```sh
 istioctl install --set profile=demo --set meshConfig.accessLogFile=/dev/stdout
 ```
+
+### Install Add-ons:
+
+**Prometheus**
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/prometheus.yaml
+
+```
+
+**Grafana**
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/grafana.yaml
+
+```
+
+**Jaeger**
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/jaeger.yaml
+
+```
+
+**Kiali**
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/kiali.yaml
+```
