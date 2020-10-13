@@ -100,9 +100,9 @@ Sign into Meshery ([see screenshot](/master/prereq/img/sign-into-meshery.png)) u
 
 Meshery attempts to automatically connect with your Kubernetes cluster by loading the kubeconfig found in your `$HOME/.kube` folder and connecting existing service mesh adapters ([see screenshot](../master/prereq/img/meshery_landing_page.png)).
 
-If your kubeconfig is in a different location (i.e. if you are not using Docker Desktop), point Meshery to your kubeconfig location by navigating to the Settings page. Navigate to Settings by clicking the gear icon on the right top of the screen ([see screenshot](https://raw.githubusercontent.com/layer5io/linkerd-service-mesh-workshop/master/prereq/img/meshery_landing_page_settings_icon.png)).
+If your kubeconfig is in a different location (i.e. if you are not using Docker Desktop), point Meshery to your kubeconfig location by navigating to the Settings page. Navigate to Settings by clicking the gear icon on the right top of the screen ([see screenshot](https://raw.githubusercontent.com/layer5io/advanced-istio-service-mesh-workshop/master/prereq/img/meshery_landing_page_settings_icon.png)).
 
-This will take the user to the `Settings` page and here you can load up your new config file and select the context to use ([see screenshot](https://raw.githubusercontent.com/layer5io/linkerd-service-mesh-workshop/feature/blend-in-meshery/prereq/img/meshery_settings_page.png)).
+This will take the user to the `Settings` page and here you can load up your new config file and select the context to use ([see screenshot](https://raw.githubusercontent.com/layer5io/advanced-istio-service-mesh-workshop/feature/blend-in-meshery/prereq/img/meshery_settings_page.png)).
 
 **If you are using minikube**:
 To configure Meshery to use minikube:
@@ -114,33 +114,33 @@ To configure Meshery to use minikube:
 mesheryctl system config minikube -t ~/Downloads/auth.json
 ```
 
-In a similar fashion, if you don't see the Linkerd adapter loaded, you should be able to switch to the `Service Meshes` tab in the `Settings` page and connect to existing adapters from the drop down ([see screenshot](https://raw.githubusercontent.com/layer5io/linkerd-service-mesh-workshop/master/prereq/img/meshery_settings_page-service-meshes.png)).
+In a similar fashion, if you don't see the Istio adapter loaded, you should be able to switch to the `Service Meshes` tab in the `Settings` page and connect to existing adapters from the drop down ([see screenshot](https://raw.githubusercontent.com/layer5io/advanced-istio-service-mesh-workshop/master/prereq/img/meshery_settings_page-service-meshes.png)).
 
-Once an adapter is connected, you will also see it added to the nav menu on the left ([see screenshot](https://raw.githubusercontent.com/layer5io/linkerd-service-mesh-workshop/master/prereq/img/meshery_settings_page-service_meshes_with_menu.png)).
+Once an adapter is connected, you will also see it added to the nav menu on the left ([see screenshot](https://raw.githubusercontent.com/layer5io/advanced-istio-service-mesh-workshop/master/prereq/img/meshery_settings_page-service_meshes_with_menu.png)).
 
 In the labs, you will use a combination of Meshery's UI and your terminal. We suggest splitting the view on your display between your terminal and your web browser, so that you don't have to switch between apps frequently.
 
-## Install Linkerd CLI
+## Install Istio CLI
 
 **Bash**
-Install `linkerd` CLI on your local system by executing:
+Install `istioctl` CLI on your local system by executing:
 
 ```sh
-curl -sL https://run.linkerd.io/install | sh
-export PATH=$PATH:$HOME/.linkerd2/bin
+curl -L https://istio.io/downloadIstio | sh -
+export PATH=$PWD/bin:$PATH
 ```
 
 **Brew**
-If you are on MacOS, you can use homebrew to install Linkerd cli:
+If you are on MacOS, you can use homebrew to install Istio cli:
 
 ```sh
-brew install linkerd
+brew install istioctl
 ```
 
 To verify if the cli was successfully installed:
 
 ```sh
-linkerd version
+istioctl version
 ```
 
 <h2>
