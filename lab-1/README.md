@@ -49,20 +49,26 @@ kubectl get all -n istio-system
 
 ## <a name="3"></a> 3 - Install Add-ons
 
-Istio, as part of this workshop, is installed with several optional addons like:
+Using Meshery, install Istio add-ons. In the Istio management page:
 
-1. [Prometheus](https://prometheus.io/)
-2. [Grafana](https://grafana.com/)
-3. [Zipkin](https://zipkin.io/)
-4. [Jaeger](https://www.jaegertracing.io/)
-5. [Kiali](https://www.kiali.io/)
+1. Click the (+) icon on the `Apply Service Mesh Configuration` card.
+1. Select each of the following add-ons:
+   1. [Prometheus](https://prometheus.io/)
+   1. [Grafana](https://grafana.com/)
+   1. [Zipkin](https://zipkin.io/)
+   1. [Jaeger](https://www.jaegertracing.io/)
+   1. [Kiali](https://www.kiali.io/)
+
+<a href="img/istio-add-ons.png">
+<img src="img/istio-add-ons.png" width="50%" align="center" />
+</a>
 
 You will use Prometheus and Grafana for collecting and viewing metrics, while for viewing distributed traces, you can choose between [Zipkin](https://zipkin.io/) or [Jaeger](https://www.jaegertracing.io/). In this training, we will use Jaeger. Kiali is another add-on which can be used to generate a graph of services within an Istio mesh and is deployed as part of Istio in this lab.
 
 <h2>
   <a href="../lab-2/README.md">
   <img src="../img/go.svg" width="32" height="32" align="left" />
-  Continue to Lab 2</a>: Deploy a sample app - BookInfo
+  Continue to Lab 2</a>: Deploy the sample application BookInfo
 </h2>
 
 <br />
