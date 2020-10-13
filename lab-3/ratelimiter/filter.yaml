@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
   name: custom-filter
-  namespace: default # as defined in meshConfig resource.
 spec:
   configPatches:
   - applyTo: HTTP_FILTER
@@ -26,11 +25,11 @@ spec:
             vmConfig:
               code:
                 local:
-                  filename: /var/lib/filters/ratelimit-filter.wasm
+                  filename: /var/lib/imagehub/filter.wasm
               runtime: envoy.wasm.runtime.v8
               vmId: custom-filter
               allow_precompiled: true
   workloadSelector:
     labels:
-      app: productpage
+      app: api-v1
       version: v1
