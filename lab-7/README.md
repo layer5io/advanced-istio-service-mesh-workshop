@@ -42,7 +42,7 @@ Alternative, manual installation steps are provided for reference below. No need
 
 ## <a name="appendix"></a> Appendix - Alternative Manual Install
 
-imagehub-filter
+Manually deploy the imagehub-filter.
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -82,53 +82,54 @@ spec:
       version: v1
 ```
 
-Update BookInfo's Deployment
+Manually patch the Image Hub Deployment.
 
 ```json
----
-// kubectl patch deployment/api-v1 -p '
-{
-  "spec": {
-    "template": {
-      "metadata": {
-        "annotations": {
-          "sidecar.istio.io/userVolumeMount": "[{\"mountPath\":\"/var/lib/imagehub\",\"name\":\"wasm-filter\"}]"
+---(
+  // kubectl patch deployment/api-v1 -p '
+  {
+    "spec": {
+      "template": {
+        "metadata": {
+          "annotations": {
+            "sidecar.istio.io/userVolumeMount": "[{\"mountPath\":\"/var/lib/imagehub\",\"name\":\"wasm-filter\"}]"
+          }
+        },
+        "spec": {
+          "initContainers": [
+            {
+              "command": [
+                "curl",
+                "-L",
+                "-o",
+                "/var/lib/imagehub/filter.wasm",
+                "https://github.com/layer5io/advanced-istio-service-mesh-workshop/raw/master/lab-7/ratelimiter/ratelimit-filter.wasm"
+              ],
+              "image": "curlimages/curl",
+              "imagePullPolicy": "Always",
+              "name": "add-wasm",
+              "resources": {},
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/lib/imagehub",
+                  "name": "wasm-filter"
+                }
+              ]
+            }
+          ],
+          "volumes": [
+            {
+              "emptyDir": {},
+              "name": "wasm-filter"
+            }
+          ]
         }
-      },
-      "spec": {
-        "initContainers": [
-          {
-            "command": [
-              "curl",
-              "-L",
-              "-o",
-              "/var/lib/imagehub/filter.wasm",
-              "https://github.com/layer5io/advanced-istio-service-mesh-workshop/raw/master/lab-7/ratelimiter/ratelimit-filter.wasm"
-            ],
-            "image": "curlimages/curl",
-            "imagePullPolicy": "Always",
-            "name": "add-wasm",
-            "resources": {},
-            "terminationMessagePath": "/dev/termination-log",
-            "terminationMessagePolicy": "File",
-            "volumeMounts": [
-              {
-                "mountPath": "/var/lib/imagehub",
-                "name": "wasm-filter"
-              }
-            ]
-          }
-        ],
-        "volumes": [
-          {
-            "emptyDir": {},
-            "name": "wasm-filter"
-          }
-        ]
       }
     }
   }
-}
+)
 // '
 ```
 
