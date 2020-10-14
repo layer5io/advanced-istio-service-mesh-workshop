@@ -1,10 +1,4 @@
-# Lab 5 - Traffic management with a service mesh
-
-If you haven't forked or cloned this repository, please do so now:
-
-```
-git clone https://github.com/layer5io/advanced-istio-service-mesh-workshop
-```
+# Lab 5 - Traffic management with Istio
 
 ## 5.1 Start managing traffic routes
 
@@ -69,3 +63,9 @@ See [Lab 4](../lab-4/README.md] for instructions for running a performance test.
 Alternative, manual installation steps are provided for reference below. No need to execute these if you have performed the steps above.
 
 <hr />
+
+If you haven't forked or cloned this repository, please do so now:
+
+```
+git clone https://github.com/layer5io/advanced-istio-service-mesh-workshop
+```
