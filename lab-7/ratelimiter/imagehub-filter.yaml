@@ -1,35 +1,42 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  name: custom-filter
+  name: imagehub-filter
 spec:
   configPatches:
   - applyTo: HTTP_FILTER
     match:
-      context: SIDECAR_OUTBOUND # will match outbound listeners in all sidecars
+      context: SIDECAR_INBOUND # will match inbound listeners in all sidecars
+      proxy:
+        proxyVersion: '^1\.7.*'
       listener:
-        portNumber: 9080
+        portNumber: 9091
         filterChain:
-          name: envoy.http_connection_manager
           filter:
-            name: "envoy.tcp_proxy"
+            name: envoy.http_connection_manager
+            subFilter:
+              name: envoy.router
     patch:
       operation: INSERT_BEFORE
       value:
-        # This is the full filter config including the name and config or typed_config section.
-        name: "envoy.filters.http.wasm"
-        config:
-          config:
-            name: custom-filter
-            rootId: my_root_id
-            vmConfig:
-              code:
-                local:
-                  filename: /var/lib/imagehub/filter.wasm
-              runtime: envoy.wasm.runtime.v8
-              vmId: custom-filter
-              allow_precompiled: true
+        name: envoy.filter.http.wasm
+        typed_config:
+          "@type": type.googleapis.com/udpa.type.v1.TypedStruct
+          type_url: type.googleapis.com/envoy.extensions.filters.http.wasm.v3.Wasm
+          value:
+            config:
+              configuration:
+                '@type': type.googleapis.com/google.protobuf.StringValue
+                value: "rate_limit_filter"
+              root_id: "rate_limit_filter"
+              vmConfig:
+                code:
+                  local:
+                    filename: "/var/lib/imagehub/filter.wasm"
+                runtime: envoy.wasm.runtime.v8
+                vmId: rate_limit_filter
+                allow_precompiled: true
   workloadSelector:
     labels:
-      app: api-v1
+      app: api
       version: v1
