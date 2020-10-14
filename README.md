@@ -9,33 +9,31 @@ A workshop on the fundamentals of service mesh through the lens of Linkerd. Ques
 ## Setup Istio & an app on the mesh
 
 - [Lab 1 - Setup Istio](lab-1/README.md)
-- [Lab 2 - Deploy a sample app - BookInfo](lab-2/README.md)
+- [Lab 2 - Deploy the sample application BookInfo](lab-2/README.md)
+- [Lab 3 - Istio Ingress Gateway](lab-3/README.md)
+- [Lab 4 - Telemetry Add-ons](lab-4/README.md)
 
 <p>
 <img src="img/break.png" height="25px" style="text-align:left; padding:8px" />
 Break (5 minutes)
 </p>
 
-### Advanced Service Mesh Concepts
-
-- [Lab 3 - WebAssembly and intelligent data planes](lab-3/README.md)
-
 ## Traffic Control
 
-- [Lab 4 - Traffic management with a service mesh](lab-4/README.md)
+- [Lab 5 - Traffic management with a service mesh](lab-4/README.md)
 
 <p>
 <img src="img/break.png" height="25px" style="text-align:left; padding:8px" />
 Break (10 minutes)
 </p>
 
-## Observability & Performance
-
-- [Lab 5 - Telemetry available within a service mesh](lab-5/README.md)
-
 ## Security
 
-- [Lab 6 - Istio’s service security capabilities](lab-6/README.md)
+- [Lab 6 - Istio’s service security capabilities](lab-5/README.md)
+
+## Advanced Traffic Management
+
+- [Lab 7 - WebAssembly and intelligent data planes](lab-6/README.md)
 
 # Authors
 
@@ -44,6 +42,8 @@ Break (10 minutes)
 # Workshop Resources
 
 This workshop and other service mesh resoruces have been created by the Layer5 [service mesh community](https://layer5.io/community).
+
+<hr />
 
 ## About Layer5
 

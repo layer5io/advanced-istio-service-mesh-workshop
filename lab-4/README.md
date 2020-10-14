@@ -1,22 +1,67 @@
-# Lab 4 - Traffic management with a service mesh
+# Lab 4 - Observability
 
-## 4.1 Generate Load on Bookinfo
+## <a name="1"></a>4.1 Install Telemetry Add-ons
 
-Let's generate HTTP traffic against the BookInfo application, so we can see interesting telemetry. Grab the ingress gateway port number and store it in a variable:
+Using Meshery, install Istio telemetry add-ons. In the Istio management page:
+
+1. Click the (+) icon on the `Apply Service Mesh Configuration` card.
+1. Select each of the following add-ons:
+   1. [Prometheus](https://prometheus.io/)
+   1. [Grafana](https://grafana.com/)
+   1. [Jaeger](https://www.jaegertracing.io/)
+
+<a href="img/istio-add-ons.png">
+<img src="img/istio-add-ons.png" width="50%" align="center" />
+</a>
+
+You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces. Expose each add-on external to the cluster. Set each the service networking to "LoadBalancer" or "NodePort".
+
+#### Option 1: Expose telemetry add-ons with LoadBalancer
+
+To expose them using LoadBalancer (or NodePort) service type, edit each service and change the service type from `ClusterIP` to `LoadBalancer`.
+
+For Jaeger:
 
 ```sh
-kubectl get service istio-ingressgateway -n istio-system --template='{{(index .spec.ports 1).nodePort}}'
+kubectl -n istio-system edit svc tracing
 ```
 
-Once we have the port, we can append the IP of one of the nodes to get the host.
+Once this is done the services will be assigned dedicated ports on your cluster, which will be accessible from your host's network.
 
-The URL to run a load test against will be `http://<IP/hostname of any of the nodes in the cluster>:<ingress port>/productpage`
+To find the assigned ports for Jaeger:
 
-**Please note:** If you are using Docker Desktop, please use the IP address of your host. You can leave the port blank. For example: `http://1.2.3.4/productpage`
+```sh
+kubectl get svc tracing -n istio-system
+```
 
-You can now use the computed URL above in Meshery, in the browser, to run a load test and see the results.
+#### Option 2: Expose telemetry add-ons with port-forwarding
 
-In Meshery navigate to the Performance page from the left nav menu.
+To port-forward Jaeger:
+
+```sh
+kubectl -n istio-system port-forward \
+  $(kubectl -n istio-system get pod -l app=jaeger -o jsonpath='{.items[0].metadata.name}') \
+  16686:16686 &
+```
+
+<a href="img/jaeger.png">
+<img src="img/jaeger.png" width="50%" align="center" />
+</a>
+<a href="img/jaeger_2.png">
+<img src="img/jaeger_2.png" width="50%" align="center" />
+</a>
+
+#### Option 3: Expose telemetry add-ons with Istio Ingress
+
+Just kidding.
+
+**Question: Why can't you expose these add-on components through Istio Ingress Gateway?**
+
+<small>Manual step for can be found [here](#appendix)</small>
+
+### <a name="2"></a>4.2 Generate Load and Manage Performance
+
+Using Meshery, generate load and analyze performance.
 
 On the Performance page, please do the following:
 
@@ -32,6 +77,46 @@ Once you have entered values for all the fields, you now click on `Run Test`.
 This will run the load test and show the results in a chart ([see screenshot](https://raw.githubusercontent.com/leecalcote/istio-service-mesh-workshop/feature/blend-in-meshery/lab-4/img/meshery_initial_load_test.png)).
 
 Now that we have run the load test, lets view the generated metrics in the cluster.
+
+Next, you will begin controlling requests to BookInfo using traffic management features.
+
+<h2>
+  <a href="../lab-3/README.md">
+  <img src="../img/go.svg" width="32" height="32" align="left" />
+  Continue to Lab 5</a>: Traffic Management
+</h2>
+
+<br />
+<hr />
+
+Alternative, manual installation steps are provided for reference below. No need to execute these if you have performed the steps above.
+
+<hr />
+
+## <a name="appendix"></a> Appendix - Alternative Manual Steps
+
+### 4.1 Install Add-ons:
+
+**Prometheus**
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/prometheus.yaml
+
+```
+
+**Grafana**
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/grafana.yaml
+
+```
+
+**Jaeger**
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/jaeger.yaml
+
+```
 
 ### Exposing services
 
@@ -184,22 +269,18 @@ kubectl -n istio-system get svc tracing
 
 You can click on the link at the top of the page which maps to the right port and it will open Jaeger UI in a new tab.
 
-![](img/jaeger.png)
+## 4.1 Generate Load on Bookinfo
 
-![](img/jaeger_2.png)
+Let's generate HTTP traffic against the BookInfo application, so we can see interesting telemetry. Grab the ingress gateway port number and store it in a variable:
 
-<h2>
-  <a href="../lab-5/README.md">
-  <img src="../img/go.svg" width="32" height="32" align="left" />
-  Continue to Lab 5</a>: Request Routing and Canary Testing
-</h2>
+```sh
+kubectl get service istio-ingressgateway -n istio-system --template='{{(index .spec.ports 1).nodePort}}'
+```
 
-<br />
-<hr />
+Once we have the port, we can append the IP of one of the nodes to get the host.
 
-Alternative, manual installation steps are provided for reference below. No need to execute these if you have performed the steps above.
+The URL to run a load test against will be `http://<IP/hostname of any of the nodes in the cluster>:<ingress port>/productpage`
 
-<hr />
+**Please note:** If you are using Docker Desktop, please use the IP address of your host. You can leave the port blank. For example: `http://1.2.3.4/productpage`
 
-5.1 route-v1-v2
-5.2 route-header
+You can now use the computed URL above in Meshery, in the browser, to run a load test and see the results.
