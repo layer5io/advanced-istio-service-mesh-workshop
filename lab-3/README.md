@@ -91,7 +91,7 @@ Before we start playing with Istio's traffic management capabilities we need to 
 Using Meshery, navigate to the Istio management page, and:
 
 1. Enter `default` in the `Namespace` field.
-1. Click the (+) icon on the `Configure` card and select `Default Book info destination rules (defines subsets)` from the list.
+1. Click the (+) icon on the `Configure` card and select `Default BookInfo destination rules (defines subsets)` from the list.
 
 This creates destination rules for each of the BookInfo services and defines version subsets
 
