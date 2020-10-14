@@ -205,10 +205,10 @@ spec:
             host: reviews
             subset: v1
           weight: 100
-      # mirror:
-      #   host: reviews
-      #   subset: v2
-      # mirror_percent: 100
+      mirror:
+        host: reviews
+        subset: v2
+      mirror_percent: 100
 ```
 
 5.3
