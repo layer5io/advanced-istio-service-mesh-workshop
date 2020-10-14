@@ -150,9 +150,9 @@ spec:
 
 Set your browser to mimic a mobile device. Enable Developer tools, if need.Refresh productpage.
 
-### 5.2.2 Redirect requests based on Cookie data
+### 5.2.2 Redirect requests based on HTTP header information
 
-Example of using user information from a cookie to redirect requests.
+Example of using user information from HTTP headers to redirect requests.
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
