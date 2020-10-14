@@ -84,56 +84,52 @@ spec:
 
 Update BookInfo's Deployment
 
-```yaml
+```json
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: productpage-v1
-  labels:
-    app: productpage
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: productpage
-      version: v1
-  template:
-    metadata:
-      labels:
-        app: productpage
-        version: v1
-    spec:
-      serviceAccountName: bookinfo-productpage
-      initContainers:
-        - name: add-wasm
-          image: curlimages/curl
-          command:
-            - "curl"
-            - "-L"
-            - "-o"
-            - "/var/lib/filters/ratelimit-filter.wasm"
-            - "https://github.com/layer5io/advanced-istio-service-mesh-workshop/raw/master/lab-3/ratelimiter/ratelimit-filter.wasm"
-          volumeMounts:
-            - mountPath: /var/lib/filters
-              name: wasm-filter
-      containers:
-        - name: productpage
-          image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.2
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 9080
-          volumeMounts:
-            - name: tmp
-              mountPath: /tmp
-            - name: wasm-filter
-              mountPath: /var/lib/filters
-      volumes:
-        - name: tmp
-          emptyDir: {}
-        - name: wasm-filter
-          emptyDir: {}
+// kubectl patch deployment/api-v1 -p '
+{
+  "spec": {
+    "template": {
+      "metadata": {
+        "annotations": {
+          "sidecar.istio.io/userVolumeMount": "[{\"mountPath\":\"/var/lib/imagehub\",\"name\":\"wasm-filter\"}]"
+        }
+      },
+      "spec": {
+        "initContainers": [
+          {
+            "command": [
+              "curl",
+              "-L",
+              "-o",
+              "/var/lib/imagehub/filter.wasm",
+              "https://github.com/layer5io/advanced-istio-service-mesh-workshop/raw/master/lab-7/ratelimiter/ratelimit-filter.wasm"
+            ],
+            "image": "curlimages/curl",
+            "imagePullPolicy": "Always",
+            "name": "add-wasm",
+            "resources": {},
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/var/lib/imagehub",
+                "name": "wasm-filter"
+              }
+            ]
+          }
+        ],
+        "volumes": [
+          {
+            "emptyDir": {},
+            "name": "wasm-filter"
+          }
+        ]
+      }
+    }
+  }
+}
+// '
 ```
 
 <h2>
