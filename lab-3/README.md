@@ -1,4 +1,4 @@
-# Lab 6 - WebAssembly and intelligent data planes
+# Lab 3 - Exposing services through Istio Ingress Gateway
 
 The components deployed on the service mesh by default are not exposed outside the cluster. An Ingress Gateway is deployed as a Kubernetes service of type LoadBalancer (or NodePort). To make Bookinfo accessible external to the cluster, you have to create an `Istio Gateway` for the Bookinfo application and also define an `Istio VirtualService` with the routes we need.
 
@@ -50,16 +50,6 @@ kubectl logs istio-ingressgateway-... -n istio-system
 
 ## 3.2 View Istio Ingress Gateway for Bookinfo
 
-<!-- ### 3.2.1 - Configure the Bookinfo route with the Istio Ingress gateway:
-
-We can create a virtualservice & gateway for bookinfo app in the ingress gateway by running the following:
-
-```sh
-kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
-```
-
-### 3.2.2 - View the Gateway and VirtualServices -->
-
 ### 3.2.1 - View the Gateway and VirtualServices
 
 Check the created `Istio Gateway` and `Istio VirtualService` to see the changes deployed:
@@ -100,15 +90,12 @@ Docker Desktop users please use `http://localhost/productpage` to access product
 
 Before we start playing with Istio's traffic management capabilities we need to define the available versions of the deployed services. They are called subsets, in destination rules.
 
-<!-- Run the following command to create default destination rules for the Bookinfo services:
-```sh
-kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
-``` -->
+Using Meshery, navigate to the Istio management page, and:
 
-Now in Meshery, in the browser, navigate to the Istio adapter's management page from the left nav menu again.
+1. Enter `default` in the `Namespace` field.
+1. Click the (+) icon on the `Configure` card and select `Default Book info destination rules (defines subsets)` from the list.
 
-On the Istio adapter's management page, please enter `default` in the `Namespace` field.
-Then, click the (+) icon on the `Configure` card and select `Default Book info destination rules (defines subsets)` from the list. This will deploy the destination rules for all the Book info services defining their subsets.
+This creates destination rules for each of the BookInfo services and defines version subsets
 
 <small>Manual step for can be found [here](#appendix)</small>
 
@@ -121,7 +108,7 @@ kubectl get destinationrules
 kubectl get destinationrules -o yaml
 ```
 
-## 3.4 - Browse to Bookinfo
+## 3.4 - Browse to BookInfo
 
 Browse to the website of the Bookinfo. To view the product page, you will have to append
 `/productpage` to the url.
@@ -177,3 +164,19 @@ kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
 Alternative, manual installation steps are provided for reference below. No need to execute these if you have performed the steps above.
 
 <hr />
+
+Run the following command to create default destination rules for the Bookinfo services:
+
+```sh
+kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
+```
+
+### 3.2.1 - Configure the Bookinfo route with the Istio Ingress gateway:
+
+We can create a virtualservice & gateway for bookinfo app in the ingress gateway by running the following:
+
+```sh
+kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+```
+
+### 3.2.2 - View the Gateway and VirtualServices
