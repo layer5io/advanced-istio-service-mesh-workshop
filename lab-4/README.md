@@ -14,43 +14,7 @@ Using Meshery, install Istio telemetry add-ons. In the Istio management page:
 <img src="img/istio-add-ons.png" width="50%" align="center" />
 </a>
 
-You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces. Expose each add-on external to the cluster. Set each the service networking to "LoadBalancer" or "NodePort". Repeat one of the following options for each of the add-ons.
-
-#### Option 1: Expose telemetry add-ons with LoadBalancer
-
-To expose them using LoadBalancer (or NodePort) service type, edit each service and change the service type from `ClusterIP` to `LoadBalancer`.
-
-For Jaeger:
-
-```sh
-kubectl -n istio-system edit svc tracing
-```
-
-Once this is done the services will be assigned dedicated ports on your cluster, which will be accessible from your host's network.
-
-To find the assigned ports for Jaeger:
-
-```sh
-kubectl get svc tracing -n istio-system
-```
-
-#### Option 2: Expose telemetry add-ons with port-forwarding
-
-To port-forward Jaeger:
-
-```sh
-kubectl -n istio-system port-forward \
-  $(kubectl -n istio-system get pod -l app=jaeger -o jsonpath='{.items[0].metadata.name}') \
-  16686:16686 &
-```
-
-<a href="img/jaeger.png">
-<img src="img/jaeger.png" width="50%" align="center" />
-</a>
-
-#### Option 3: Expose telemetry add-ons with Istio Ingress
-
-Just kidding.
+You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces. Expose each add-on external to the cluster. Each the service network typs are set to "LoadBalancer".
 
 **Question: Why can't you expose these add-on components through Istio Ingress Gateway?**
 
@@ -224,6 +188,10 @@ To do this the application collects and propagates the following headers from th
 - `x-b3-sampled`
 - `x-b3-flags`
 - `x-ot-span-context`
+
+<a href="img/jaeger.png">
+<img src="img/jaeger.png" width="50%" align="center" />
+</a>
 
 ### Exposing services
 
