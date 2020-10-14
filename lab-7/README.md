@@ -1,6 +1,6 @@
 # Lab 7 - WebAssembly and intelligent data planes
 
-In this lab, you will use the sample application [Image Hub](https://github.com/layer5io/image-hub).
+In this lab, you will use the sample application [Image Hub](https://github.com/layer5io/image-hub). This version of the Image Hub filter has been simplified for your lab. To self-study deeper functionality, try the other version of the Image Hub filter that is available in the Image Hub repo.
 
 ## 7.1. Deploy Sample Application
 
@@ -42,7 +42,7 @@ Alternative, manual installation steps are provided for reference below. No need
 
 ## <a name="appendix"></a> Appendix - Alternative Manual Install
 
-Manually deploy the imagehub-filter.
+Manually deploy the Image Hub filter.
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -132,6 +132,8 @@ Manually patch the Image Hub Deployment.
 )
 // '
 ```
+
+A future version of Meshery will allow you to deploy any filter from the [wasm-filters](https://github.com/layer5io/wasm-filters) repo. PR the repo to upload your custom filter and have Meshery deploy it.
 
 <h2>
 Thank you for taking this workshop!
