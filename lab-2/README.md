@@ -11,6 +11,7 @@ The end-to-end architecture of the application is shown in the figure.
 <a href="img/bookinfo-off-mesh.png">
 <img src="img/bookinfo-off-mesh.png" width="50%" align="center" />
 </a>
+
 _Figure: BookInfo deployed off the mesh_
 
 It’s worth noting that these services have no dependencies on Istio, but make an interesting service mesh example, particularly because of the multitude of services, languages and versions for the reviews service.
@@ -20,6 +21,7 @@ As shown in the figure below, proxies are sidecarred to each of the application 
 <a href="img/bookinfo-on-mesh.png">
 <img src="img/bookinfo-on-mesh.png" width="50%" align="center" />
 </a>
+
 _Figure: BookInfo deployed on the mesh_
 
 Sidecars proxy can be either manually or automatically injected into the pods. Automatic sidecar injection requires that your Kubernetes api-server supports `admissionregistration.k8s.io/v1` or `admissionregistration.k8s.io/v1beta1` or `admissionregistration.k8s.io/v1beta2` APIs. Verify whether your Kubernetes deployment supports these APIs by executing:
