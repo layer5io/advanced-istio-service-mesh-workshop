@@ -20,7 +20,7 @@ Break (5 minutes)
 
 ## Traffic Control
 
-- [Lab 5 - Traffic management with a service mesh](lab-4/README.md)
+- [Lab 5 - Traffic management with Istio](lab-5/README.md)
 
 <p>
 <img src="img/break.png" height="25px" style="text-align:left; padding:8px" />
@@ -29,23 +29,23 @@ Break (10 minutes)
 
 ## Security
 
-- [Lab 6 - Istio’s service security capabilities](lab-5/README.md)
+- [Lab 6 - Istio’s service security capabilities](lab-6/README.md)
 
 ## Advanced Traffic Management
 
-- [Lab 7 - WebAssembly and intelligent data planes](lab-6/README.md)
+- [Lab 7 - WebAssembly and intelligent data planes](lab-7/README.md)
 
 # Authors
 
 - Layer5 Authors [Twitter](https://twitter.com/layer5), [Slack](http://slack.layer5.io)
 
-# Workshop Resources
+## Workshop Resources
 
-This workshop and other service mesh resoruces have been created by the Layer5 [service mesh community](https://layer5.io/community).
+This workshop and other service mesh resources have been created by the Layer5 [service mesh community](https://layer5.io/community).
 
 <hr />
 
-## About Layer5
+### About Layer5
 
 **Community First**
 
@@ -59,6 +59,6 @@ This workshop and other service mesh resoruces have been created by the Layer5 [
 - Follow on Twitter: [@layer5](https://twitter.com/layer5), [@mesheryio](https://twitter.com/mesheryio), [@smp_spec](https://twitter.com/smp_spec)
 - Watch on [YouTube](https://www.youtube.com/channel/UCFL1af7_wdnhHXL1InzaMvA?sub_confirmation=1), Follow on [LinkedIn](https://www.linkedin.com/company/layer5)
 
-## License
+### License
 
 This repository and site are available as open-source under the terms of the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0).

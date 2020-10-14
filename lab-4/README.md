@@ -54,15 +54,13 @@ Just kidding.
 
 **Question: Why can't you expose these add-on components through Istio Ingress Gateway?**
 
-<small>Manual step for can be found [here](#appendix)</small>
-
 ### <a name="2"></a>4.2 Service Mesh Performance and Telemetry
 
 Many of the labs require load to be placed on the sample apps.
 
 #### 2.1 Connect Grafana (optionally, Prometheus) to Meshery.
 
-On the [Settings page](http://localhost:9081/settings):
+On the [Settings page](http://localhost:9081/settings#metrics):
 
 1. Navigate to the `Metrics` tab.
 1. Enter Grafana's URL:port number and submit.
