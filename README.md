@@ -1,6 +1,6 @@
 # Advanced Istio Service Mesh Workshop
 
-A workshop on the fundamentals of service mesh through the lens of Linkerd. Questions? Join the [service mesh community](http://slack.layer5.io).
+A workshop on advanced aspects of service mesh through the lens of Istio. Questions? Join the [service mesh community](http://slack.layer5.io).
 
 ## Prerequisites
 
