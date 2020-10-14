@@ -62,8 +62,6 @@ kubectl get virtualservices
 kubectl get virtualservices -o yaml
 ```
 
-<!-- ### 3.2.3 - Find the external port of the Istio Ingress Gateway by running: -->
-
 ### 3.2.2 - Find the external port of the Istio Ingress Gateway by running:
 
 ```sh

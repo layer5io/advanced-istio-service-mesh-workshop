@@ -14,7 +14,7 @@ Using Meshery, install Istio telemetry add-ons. In the Istio management page:
 <img src="img/istio-add-ons.png" width="50%" align="center" />
 </a>
 
-You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces. Expose each add-on external to the cluster. Set each the service networking to "LoadBalancer" or "NodePort".
+You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces. Expose each add-on external to the cluster. Set each the service networking to "LoadBalancer" or "NodePort". Repeat one of the following options for each of the add-ons.
 
 #### Option 1: Expose telemetry add-ons with LoadBalancer
 
@@ -47,9 +47,6 @@ kubectl -n istio-system port-forward \
 <a href="img/jaeger.png">
 <img src="img/jaeger.png" width="50%" align="center" />
 </a>
-<a href="img/jaeger_2.png">
-<img src="img/jaeger_2.png" width="50%" align="center" />
-</a>
 
 #### Option 3: Expose telemetry add-ons with Istio Ingress
 
@@ -59,24 +56,29 @@ Just kidding.
 
 <small>Manual step for can be found [here](#appendix)</small>
 
-### <a name="2"></a>4.2 Generate Load and Manage Performance
+### <a name="2"></a>4.2 Service Mesh Performance and Telemetry
 
-Using Meshery, generate load and analyze performance.
+Many of the labs require load to be placed on the sample apps.
 
-On the Performance page, please do the following:
+#### 2.1 Connect Grafana (optionally, Prometheus) to Meshery.
+
+On the [Settings page](http://localhost:9081/settings):
+
+1. Navigate to the `Metrics` tab.
+1. Enter Grafana's URL:port number and submit.
+
+#### 2.2 Use Meshery to generate load and analyze performance.
+
+On the [Performance page](http://localhost:9081/performance):
 
 1. give this load test a memorable name
-1. enter the URL to the Book info productpage you derived above
+1. enter the URL to the BookInfo productpage
 1. select `Istio` in the `Service Mesh` dropdown
 1. enter a valid number for `Concurrent requests`
 1. enter a valid number for `Queries per second`
 1. enter a valid `Duration` (a number followed by `s` for seconds (OR) `m` for minutes (OR) `h` for hour)
 
-Once you have entered values for all the fields, you now click on `Run Test`.
-
-This will run the load test and show the results in a chart ([see screenshot](https://raw.githubusercontent.com/leecalcote/istio-service-mesh-workshop/feature/blend-in-meshery/lab-4/img/meshery_initial_load_test.png)).
-
-Now that we have run the load test, lets view the generated metrics in the cluster.
+Click on `Run Test`. A performance test will run and statistical analysis performed. Examine the results of the test and behavior of the service mesh.
 
 Next, you will begin controlling requests to BookInfo using traffic management features.
 

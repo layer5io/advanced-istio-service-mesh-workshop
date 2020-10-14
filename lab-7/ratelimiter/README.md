@@ -9,3 +9,5 @@
 <h2>
 Thank you for taking this workshop!
 </h2>
+
+Star this repository and watch for updates.
