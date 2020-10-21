@@ -45,7 +45,7 @@ Click on `Run Test`. A performance test will run and statistical analysis perfor
 Next, you will begin controlling requests to BookInfo using traffic management features.
 
 <h2>
-  <a href="../lab-3/README.md">
+  <a href="../lab-5/README.md">
   <img src="../img/go.svg" width="32" height="32" align="left" />
   Continue to Lab 5</a>: Traffic Management
 </h2>
