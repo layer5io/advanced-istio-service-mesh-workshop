@@ -36,10 +36,10 @@ As part of Istio deployment in [Lab 1](../lab-1/README.md), you have deployed th
 
 ### <a name="auto"></a> Deploying Sample App with Automatic sidecar injection
 
-Istio, deployed as part of this workshop, will also deploy the sidecar injector. Let us now verify sidecar injector deployment.
+Istio, deployed as part of this workshop, will also create the sidecar injector. Let us now verify sidecar injector configmap.
 
 ```sh
-kubectl -n istio-system get deployment -l istio=sidecar-injector
+kubectl -n istio-system get cm istio-sidecar-injector
 ```
 
 Output:
