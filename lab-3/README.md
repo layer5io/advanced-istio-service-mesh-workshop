@@ -88,7 +88,7 @@ Before we start playing with Istio's traffic management capabilities we need to 
 
 Using Meshery, navigate to the Custom yaml page, and apply the below to create the subsets for BookInfo:
 
-```
+```sh
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
