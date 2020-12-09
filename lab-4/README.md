@@ -14,7 +14,7 @@ Using Meshery, install Istio telemetry add-ons. In the Istio management page:
 <img src="img/istio-add-ons.png" width="50%" align="center" />
 </a>
 
-You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces. Expose each add-on external to the cluster. Each the service network typs are set to "LoadBalancer".
+You will use Prometheus and Grafana for collecting and viewing metrics and [Jaeger](https://www.jaegertracing.io/) collecting and viewing distributed traces. Expose each add-on external to the cluster. Each the service network types are set to "LoadBalancer".
 
 **Question: Why can't you expose these add-on components through Istio Ingress Gateway?**
 
