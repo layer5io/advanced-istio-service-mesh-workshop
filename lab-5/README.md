@@ -187,7 +187,7 @@ spec:
 
 ## 5.3 Traffic Mirroring with Istio
 
-You will need to generate load on BookInfo's productpage service. See [Lab 4](../lab-4/README.md] for instructions for running a performance test.
+You will need to generate load on BookInfo's productpage service. See [Lab 4](../lab-4/README.md) for instructions for running a performance test.
 
 ### 5.3.1
 
