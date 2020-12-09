@@ -174,6 +174,10 @@ Browse to the website of the Bookinfo. To view the product page, you will have t
 
 Now, reload the page multiple times and notice how it round robins between v1, v2 and v3 of the reviews service.
 
+### 3.4.2 - More Details
+
+The Detailed description of how it works can be found [here](../lab-5/README.md).
+
 ## 3.5 Inspect the Istio proxy of the productpage pod
 
 To better understand the istio proxy, let's inspect the details. Let us `exec` into the productpage pod to find the proxy details. To do so we need to first find the full pod name and then `exec` into the istio-proxy container:
