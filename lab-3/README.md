@@ -82,8 +82,6 @@ Or run these commands to retrieve the full URL:
 echo "http://$(kubectl get nodes --selector=kubernetes.io/role!=master -o jsonpath={.items[0].status.addresses[?\(@.type==\"InternalIP\"\)].address}):$(kubectl get svc istio-ingressgateway -n istio-system -o jsonpath='{.spec.ports[1].nodePort}')/productpage"
 ```
 
-Docker Desktop users please use `http://localhost/productpage` to access product page in your browser.
-
 ## 3.3 Apply default destination rules
 
 Before we start playing with Istio's traffic management capabilities we need to define the available versions of the deployed services. They are called subsets, in destination rules.
