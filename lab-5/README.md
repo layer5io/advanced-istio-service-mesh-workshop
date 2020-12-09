@@ -91,7 +91,7 @@ spec:
 
 _Using Meshery, apply custom configuration._
 
-Refresh productpage.
+Refresh BookInfo productpage.
 
 ## 5.1.2 Send all requests to Productpage 2
 
@@ -112,7 +112,7 @@ spec:
 
 _Using Meshery, apply custom configuration._
 
-Refresh productpage.
+Refresh BookInfo productpage.
 
 ## 5.2 Traffic routing based on user or user-agent type
 
@@ -148,7 +148,7 @@ spec:
             subset: random
 ```
 
-Set your browser to mimic a mobile device. Enable Developer tools, if need.Refresh productpage.
+Set your browser to mimic a mobile device. Enable Developer tools, if need. Refresh BookInfo productpage.
 
 ### 5.2.2 Redirect requests based on HTTP header information
 
