@@ -125,9 +125,9 @@ metadata:
   name: bookinfo
 spec:
   hosts:
-    - "*"
+    - "bookinfo.meshery.io"
   gateways:
-    - bookinfo-gateway
+    - sample-app-gateway
   http:
     - match:
         - headers:
