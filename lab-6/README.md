@@ -267,7 +267,7 @@ spec:
 <h2>
   <a href="../lab-7/README.md">
   <img src="../img/go.svg" width="32" height="32" align="left" />
-  Continue to Lab 7</a>: WebAssembly Filters for Envoy
+  Continue to Lab 7</a>: WebAssembly and intelligent data planes
 </h2>
 
 <br />
