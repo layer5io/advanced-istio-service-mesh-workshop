@@ -74,6 +74,19 @@ To just get the first port of istio-ingressgateway service, we can run this:
 kubectl get service istio-ingressgateway -n istio-system --template='{{(index .spec.ports 1).nodePort}}'
 ```
 
+### 3.2.3 - Create a DNS entry:
+
+Modify you local `/etc/hosts` file to add an entry for your sample application.
+
+`127.0.0.1. bookinfo.meshery.io`
+
+The HTTP port is usually 31380.
+
+Or run these commands to retrieve the full URL:
+
+```sh
+echo "http://$(kubectl get nodes --selector=kubernetes.io/role!=master -o jsonpath={.items[0].status.addresses[?\(@.type==\"InternalIP\"\)].address}):$(kubectl get svc istio-ingressgateway -n istio-system -o jsonpath='{.spec.ports[1].nodePort}')/productpage"
+```
 The HTTP port is usually 31380.
 
 Or run these commands to retrieve the full URL:
