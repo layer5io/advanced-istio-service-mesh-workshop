@@ -2,6 +2,8 @@
 
 A workshop on advanced aspects of service mesh through the lens of Istio. Questions? Join the [service mesh community](http://slack.layer5.io).
 
+[Free] Use the Cloud Native Playground to walk-through the labs in this workshop in a live Kubernetes environment - https://play.meshery.io
+
 ## Prerequisites
 
 - [Prereqs - Setup Docker, Kubernetes, and Meshery](prereq/README.md)
